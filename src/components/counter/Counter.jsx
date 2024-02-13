@@ -1,26 +1,31 @@
+import { useState } from 'react'
 import './Counter.css'
+import {propTypes} from 'prop-types'
 
-export default function Counter() {
+export default function Counter({by}) {
 
-    
+    const [count, increaseCount] = useState(0)
 
     function increaseByOne() {
-        console.log("+1")
+        increaseCount(count + by.first)
+        console.log(by.first)
     }
     function increaseByFive() {
-        console.log("+5")
+        increaseCount(count + by.second)
+        console.log(by.second)
     }
     function increaseByTen() {
-        console.log("+10")
+        increaseCount(count + by.third)
+        console.log(by.third)
     }
 
     return (
         <div>
-            <span className="count">0</span>
+            <span className="count">{count}</span>
             <div>
-                <button className="increaseBtn" onClick={increaseByOne} >+1</button>
-                <button className="increaseBtn" onClick={increaseByFive}>+5</button>
-                <button className="increaseBtn" onClick={increaseByTen}>+10</button>
+                <button className="increaseBtn" onClick={increaseByOne} >{by.first}</button>
+                <button className="increaseBtn" onClick={increaseByFive}>{by.second}</button>
+                <button className="increaseBtn" onClick={increaseByTen}>{by.third}</button>
             </div>
         </div>
     )
