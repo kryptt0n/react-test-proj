@@ -1,17 +1,12 @@
 import './App.css';
 import Counter from './components/counter/Counter';
-
+import ToDoApp from './components/todo/TodoApp'
 
 function App() {
-  const by = {
-    first: 1,
-    second: 25,
-    third: 100
-  }
   return (
     <div className="App">
-      My counter
-      <Counter by={by}></Counter>
+      <ToDoApp></ToDoApp>
+
     </div>
   );
 }

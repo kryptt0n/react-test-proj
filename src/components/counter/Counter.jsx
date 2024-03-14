@@ -2,30 +2,52 @@ import { useState } from 'react'
 import './Counter.css'
 import {propTypes} from 'prop-types'
 
-export default function Counter({by}) {
+export default function Counter() {
+    const by = {
+        first: 1,
+        second: 25,
+        third: 100
+      }
+
+      const [totalCount, setCount] = useState(0)
+
+      function incrementTotal(by) {
+        setCount(totalCount + by);
+      }
+
+      function decrementTotal(by) {
+        setCount(totalCount - by);
+      }
+
+    return (
+        <>
+            <div>{totalCount}</div>
+            <CounterButton by={by.first} incrementFunc={incrementTotal} decrementFunc={decrementTotal}/>
+            <CounterButton by={by.second} incrementFunc={incrementTotal} decrementFunc={decrementTotal}/>
+            <CounterButton by={by.third} incrementFunc={incrementTotal} decrementFunc={decrementTotal}/>
+        </>
+    )
+}
+
+ function CounterButton({by, incrementFunc, decrementFunc}) {
 
     const [count, increaseCount] = useState(0)
 
-    function increaseByOne() {
-        increaseCount(count + by.first)
-        console.log(by.first)
+    function increaseBy() {
+        increaseCount(count + by)
+        incrementFunc(by)
     }
-    function increaseByFive() {
-        increaseCount(count + by.second)
-        console.log(by.second)
-    }
-    function increaseByTen() {
-        increaseCount(count + by.third)
-        console.log(by.third)
+
+    function decreaseBy() {
+        increaseCount(count - by)
+        decrementFunc(by)
     }
 
     return (
         <div>
-            <span className="count">{count}</span>
             <div>
-                <button className="increaseBtn" onClick={increaseByOne} >{by.first}</button>
-                <button className="increaseBtn" onClick={increaseByFive}>{by.second}</button>
-                <button className="increaseBtn" onClick={increaseByTen}>{by.third}</button>
+                <button className="increaseBtn" onClick={increaseBy} >+{by}</button>
+                <button className="increaseBtn" onClick={decreaseBy}>-{by}</button>
             </div>
         </div>
     )
