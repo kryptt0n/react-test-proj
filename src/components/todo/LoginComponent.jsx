@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
+import { useAuth } from './security/AuthContext'
 export default function LoginComponent() {
     
     const [username, setUsername] = useState("vitaly")
@@ -7,6 +8,7 @@ export default function LoginComponent() {
     const [showSuccessMesage, setShowSuccessMesage] = useState(false)
     const [showErrorMesage, setShowErrorMesage] = useState(false)
     const navigate = useNavigate()
+    const context = useAuth();
     
     function handleUsernameChange(event) {
         setUsername(event.target.value)
@@ -17,14 +19,9 @@ export default function LoginComponent() {
     }
     
     function handleSubmit() {
-        if (password === 'password') {
-            console.log("Success")
-            setShowSuccessMesage(true)
-            setShowErrorMesage(false)
+        if (context.login(username, password)) {
             navigate('/welcome/' + username)
         } else {
-            console.log('Failed')
-            setShowSuccessMesage(false)
             setShowErrorMesage(true)
         }
     }
