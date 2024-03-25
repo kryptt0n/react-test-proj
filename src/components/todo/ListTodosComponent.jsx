@@ -77,6 +77,7 @@ export default function ListTodosComponent() {
                     
                 </tbody>
             </table>
+            <button type="submit" className="btn btn-success m-4" onClick={() => updateToDo(-1)}>Add new Todo</button>
         </div>
     )
 }
