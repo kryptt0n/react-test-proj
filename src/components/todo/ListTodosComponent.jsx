@@ -16,7 +16,7 @@ export default function ListTodosComponent() {
     const navigate = useNavigate();
 
 
-    useEffect(() => refreshTodos())
+    useEffect(() => refreshTodos(), todos)
 
     function refreshTodos() {
         retrieveTodosApi(username)

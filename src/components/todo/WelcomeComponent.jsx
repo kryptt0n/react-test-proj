@@ -9,10 +9,6 @@ export default function WelcomeComponent() {
     const [message, setMessage] = useState(null);
 
     function callHelloWorldAPI() {
-        // retrieveHelloWorld()
-        // .then((response) => successHandle(response))
-        // .catch((error) => errorHandle(error))
-        // .finally("Clean")
 
         retrieveHelloWorldParam(username)
         .then((response) => successHandle(response))
@@ -21,7 +17,6 @@ export default function WelcomeComponent() {
     }
 
     function successHandle(response) {
-        console.log(response);
         setMessage(response.data.text);
     }
 
